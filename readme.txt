@@ -1,26 +1,27 @@
 === Admin login URL Change ===
 Contributors: jahidcse
-Donate link: https://themefic.com/
 Tags: change wp-login, login, remove wp-login, wordpress login, custom login, login customizer, custom login url, images protection, content, right click disabled, F12 disabled, Copy content, disabled, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + Shift + C, Ctrl + U, wp developers, SEO, css, html
 Requires at least: 4.7
-Tested up to: 6.4
-Stable tag: 1.0.5
+Tested up to: 6.9
+Stable tag: 1.1.6
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://wpassisthub.com/
 
 Allows you to Change your WordPress WebSite Login URL Slug.
 
 == Description ==
 
-Admin login URL Change is a very light plugin that lets you easily and safely change the url of the login form page to anything you want. It does not change any core files. It simply intercepts page requests and works on any WordPress website. This is great for your convenience, but it also close the door to would-be attackers. 
+Admin login URL Change is a very lightweight plugin that lets you easily and safely change the URL of the login form page to anything you want. It does not change any core files. It simply intercepts page requests and works on any WordPress website. This is great for your convenience, but it also closes the door to would-be attackers.
 
-Example: http://www.yourdomain.com/my-login.
+<strong> Why Use Admin Login URL Change? </strong>
 
+WordPress websites are common targets for automated bots and hackers attempting to gain unauthorized access via brute-force login attempts. The default login URLs are widely known, making them easy targets. Admin Login URL Change solves this problem by letting you rename your login URL to something unique, effectively closing this security loophole.
 
-== How to use the plugin ==
+<strong> How to use the plugin </strong>
 
-* Add New login URL
+Add New login Slug (Example: madmin)
 
 
 == Installation ==
@@ -43,6 +44,52 @@ Absolutely not.
 1. Settings
 
 == Changelog ==
+
+= 1.1.6 =
+
+* Fixed: Broken Access Control
+
+= 1.1.5 =
+
+* Added: Compatibility with WordPress 6.9
+
+= 1.1.4 =
+
+* Improvement: Updated file Structure
+* Fixed: Redirect issue fixed
+
+= 1.1.3 =
+
+* Fixed: Deprecated issue Fixed
+
+= 1.1.2 =
+
+* Added: Compatibility with WordPress 6.8
+
+= 1.1.1 =
+
+* Added: Compatibility with WooCommerce 9.8.1
+
+= 1.1.0 =
+
+* Added: Compatibility with WordPress 6.7
+
+= 1.0.9 =
+
+* Added: Compatibility with WordPress 6.6
+
+= 1.0.8 =
+
+* Removed: Auto Redirect to the Setting Page
+
+= 1.0.7 =
+
+* Added: Compatibility with WordPress 6.5
+
+= 1.0.6 =
+
+* Updated: Security
+* Fixed: Nonce Validation and escaping issues
 
 = 1.0.5 =
 

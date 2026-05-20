@@ -1,42 +1,126 @@
 .wrap h2.wp-admin-change-title {
-  padding-top: 0px;
-  font-weight: 600;
-  font-size: 20px;
-  padding-bottom: 20px;
-}
-
-
-.wp-admin-change-box p {
-  margin: 0;
-}
-
-.wp-admin-change-box p label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1d2327;
-  margin-bottom: 15px;
-  display: block;
-}
-
-
-.wp-admin-change-box p input[type="text"] {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 15px;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #2c3338;
-  font-family: Consolas,Monaco,monospace;
-}
-
-.wp-admin-change-box p input[type="submit"] {
-  border: 0px solid;
-  background: #2271b1;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
+    padding-top: 0px;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+  
+  
+  .wp-admin-change-box p {
+    margin: 0;
+  }
+  
+  .wp-admin-change-box p label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 15px;
+    display: block;
+  }
+  
+  
+  .wp-admin-change-box p input[type="text"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #2c3338;
+    font-family: Consolas,Monaco,monospace;
+  }
+  
+  .wp-admin-change-box p input[type="submit"] {
+    border: 0px solid;
+    background: #2271b1;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .wp-admin-change-box .disable{
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .jh-admin-setting-box{
+    display: flex;
+    justify-content: space-between;
+  }
+  .jh-admin-setting-box .jh-admin-setting-form{
+    width: calc(100% - 344px);
+  }
+  .jh-admin-setting-box .jh-admin-setting-form .admin_url_notes ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .jh-admin-setting-box .jh-admin-setting-form .admin_url_notes ul li{
+    margin-bottom: 15px;
+  }
+  .jh-admin-setting-box .jh-link-boxs{
+    width: 320px;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box{
+    background-color: #fff;
+    border-radius:10px;
+    margin-bottom: 15px;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box a{
+    display: block;
+    padding: 24px;
+    text-decoration: none;
+    text-align: center;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box a img{
+    margin-bottom: 15px;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box a h3{
+    font-size: 20px;
+    margin: 0;
+    color: #000;
+    display: block;
+    line-height: 24px;
+    margin-bottom: 15px;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box a p{
+    font-size: 15px;
+    margin: 0;
+    color: #000;
+    display: block;
+    line-height: 24px;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box a span{
+    margin-bottom: 0;
+    display: inline-block;
+    border: 2px solid #003c79;
+    border-radius: 6px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #003c79;
+    margin-top: 15px;
+    line-height: 1;
+    transition: .3s all ease;
+  }
+  .jh-admin-setting-box .jh-link-boxs .jh-link-box a span:hover{
+    background-color: #003c79;
+    color: #fff;
+  }
+  
+  /* Responsive */
+  
+  @media all and (max-width: 991px){
+    .jh-admin-setting-box{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .jh-admin-setting-box .jh-admin-setting-form{
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    .jh-admin-setting-box .jh-link-boxs{
+      width: 100%;
+    }
 }

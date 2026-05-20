@@ -1,173 +1,85 @@
 <?php
 /**
  * Plugin Name:       Admin login URL Change
- * Plugin URI:        https://themefic.com/
+ * Plugin URI:        https://wordpress.org/plugins/admin-login-url-change/
  * Description:       Allows you to Change your WordPress WebSite Login URL.
- * Version:           1.0.5
+ * Version:           1.1.6
  * Requires at least: 4.7
- * Tested up to: 6.4
+ * Tested up to:      6.9
  * Requires PHP:      5.3
  * Author:            jahidcse
  * Author URI:        https://profiles.wordpress.org/jahidcse/
-
-
+ * Text Domain:       admin-login-url-change
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-/**
-* OOP Class WP_Login_Change
-*/
-
-class WP_Login_Change {
-
-public function __construct() {
-
-$file_data = get_file_data( __FILE__, array( 'Version' => 'Version' ) );
-
-$this->plugin                           = new stdClass;
-$this->plugin->name                     = 'admin-login-url-change';
-$this->plugin->displayName              = 'Admin login URL Change';
-$this->plugin->version                  = $file_data['Version'];
-$this->plugin->folder                   = plugin_dir_path( __FILE__ );
-$this->plugin->url                      = plugin_dir_url( __FILE__ );
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
-* Hooks
-*/
+ * Main Plugin Class
+ */
+final class ALUC_Plugin {
 
-add_action('admin_menu', array($this,'admin_login_url_change_add_page'));
-add_action( 'activated_plugin', array($this,'admin_login_url_change_activated'));
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this,'admin_login_url_change_page_settings'));
-add_action('admin_enqueue_scripts', array($this,'admin_login_url_change_css'));
-add_action('login_head', array($this,'admin_login_url_change_redirect_error_page'));
-add_action('init', array($this,'admin_login_url_change_redirect_success_page'));
-add_action('wp_logout', array($this,'admin_login_url_change_redirect_login_page'));
-add_action('wp_login_failed', array($this,'admin_login_url_change_redirect_failed_login_page'));
+    const VERSION = '1.1.6';
+    const TEXT_DOMAIN = 'admin-login-url-change';
 
-}
+    private static $instance = null;
 
-/**
-* Admin Menu
-*/
-
-function admin_login_url_change_add_page() {
-     add_submenu_page( 'options-general.php', $this->plugin->displayName, $this->plugin->displayName, 'manage_options', $this->plugin->name, array( &$this, 'settingsPanel' ) );
-}
-
-/**
-* Activated Plugin Setting
-*/
-
-function admin_login_url_change_activated( $plugin ) {
-  if ( plugin_basename( __FILE__ ) == $plugin ) {
-    wp_redirect( admin_url( 'options-general.php?page='.$this->plugin->name ) );
-    die();
-  }
-}
-
-
-/**
-* Plugin Setting Page Linked
-*/
-
-function admin_login_url_change_page_settings( $links ) {
-  $link = sprintf( "<a href='%s' style='color:#2271b1;'>%s</a>", admin_url( 'options-general.php?page='.$this->plugin->name ), __( 'Settings', 'admin-login-url-change' ) );
-  array_push( $links, $link );
-
-  return $links;
-}
-
-/**
-* Setting Page and data store
-*/
-
-function settingsPanel() {
-
-if ( ! current_user_can( 'manage_options' ) ) {
-  wp_die( __( 'Sorry, you are not allowed to access this page.', 'admin-login-url-change' ) );
-}
-
-if(isset($_REQUEST['but_submit'])){
-    if ( ! current_user_can( 'unfiltered_html' ) ) {
-      wp_die( __( 'Sorry, you are not allowed to access this page.', 'admin-login-url-change' ) );
-    } elseif ( !isset( $_REQUEST[ $this->plugin->name . '_nonce' ] ) ) {
-      $this->errorMessage = __( 'nonce field is missing. Settings NOT saved.', 'admin-login-url-change' );
-    }else{
-    update_option( 'jh_new_login_url', sanitize_text_field($_REQUEST['jh_new_login_url']) );
-    $this->message = __( 'Settings Saved.', 'admin-login-url-change' );
+    public static function instance() {
+        if ( self::$instance === null ) {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
-  }
-  $this->admin_login_url_info = array(
-    'jh_new_login_url' => esc_html( wp_unslash( get_option( 'jh_new_login_url' ) ) ),
-  );
-  include_once $this->plugin->folder.'/view/settings.php';
 
-}
-
-
-/**
-* Admin Include CSS
-*/
-
-function admin_login_url_change_css(){
-  wp_enqueue_style( 'admin_login_url_change_css', plugins_url('/assets/css/style.css', __FILE__), false, $this->plugin->version);
-}
-
-
-
-/**
-* Redirect Error Page
-*/
-
-function admin_login_url_change_redirect_error_page(){
-
-  $jh_new_login = wp_unslash(get_option( 'jh_new_login_url' ));
-  if(strpos($_SERVER['REQUEST_URI'], $jh_new_login) === false){
-    wp_safe_redirect( home_url( '404' ), 302 );
-    exit(); 
-  } 
-}
-
-/**
-* Redirect Success Page
-*/
-
-function admin_login_url_change_redirect_success_page(){
-  $jh_new_login = wp_unslash(get_option( 'jh_new_login_url' ));
-  if(!empty($jh_new_login)){
-    $jh_wp_admin_login_current_url_path=parse_url($_SERVER['REQUEST_URI']);
-
-    if($jh_wp_admin_login_current_url_path["path"] == '/'.$jh_new_login){
-      wp_safe_redirect(home_url("wp-login.php?$jh_new_login&redirect=false"));
-      exit(); 
+    private function __construct() {
+        $this->define_constants();
+        $this->includes();
+        $this->init_hooks();
     }
-  }
+
+    private function define_constants() {
+        define( 'VERSION', self::VERSION );
+        define( 'ALUC_PLUGIN_FILE', __FILE__ );
+        define( 'ALUC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+        define( 'ALUC_PLUGIN_URL',  plugin_dir_url( __FILE__ ) );
+        define( 'ALUC_PLUGIN_BASE',  plugin_basename( __FILE__ ) );
+    }
+
+    private function includes() {
+        require_once ALUC_PLUGIN_PATH . 'includes/class-aluc-login-handler.php';
+    }
+
+    private function init_hooks() {
+        add_action( 'plugins_loaded', [ 'ALUC_Login_Handler', 'init' ] );
+        add_action( 'activated_plugin', array($this, 'aluc_activated_callback'));
+    }
+
+    public function aluc_activated_callback($plugin){
+        if ( plugin_basename( __FILE__ ) == $plugin ) {
+            wp_redirect( admin_url( 'options-general.php?page=admin-login-url-change') );
+            die();
+        }
+    }
 }
 
 /**
-* Redirect Login Page
-*/
-
-function admin_login_url_change_redirect_login_page() {
-  $jh_new_login = wp_unslash(get_option( 'jh_new_login_url' ));
-  if(!empty($jh_new_login)){
-    wp_safe_redirect(home_url("wp-login.php?$jh_new_login&redirect=false"));
-    exit();
-  }
+ * Init plugin
+ */
+function ALUC() {
+    return ALUC_Plugin::instance();
 }
+ALUC();
 
 /**
-* Redirect Login Page for Login Failed
-*/
+ * Activation / Deactivation
+ */
+register_activation_hook( __FILE__, function () {
+    ALUC(); // load plugin
+    flush_rewrite_rules();
+});
 
-function admin_login_url_change_redirect_failed_login_page($username) {
-  $jh_new_login = wp_unslash(get_option( 'jh_new_login_url' ));
-  if(!empty($jh_new_login)){
-    wp_safe_redirect(home_url("wp-login.php?$jh_new_login&redirect=false"));
-    exit();
-  }
-}
-
-
-}
-
-$WP_Login_Change = new WP_Login_Change();
+register_deactivation_hook( __FILE__, function () {
+    flush_rewrite_rules();
+});
