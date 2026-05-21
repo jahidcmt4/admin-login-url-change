@@ -7,11 +7,7 @@
         $('.aluc-tab-btn').on('click', function (e) {
             e.preventDefault();
             var target = $(this).data('tab');
-
-            // Ignore pro tabs (locked)
-            if ($(this).data('pro')) {
-                return;
-            }
+            if (!target) return;
 
             $('.aluc-tab-btn').removeClass('aluc-active');
             $('.aluc-tab-panel').removeClass('aluc-active');
@@ -24,12 +20,12 @@
             }
         });
 
-        // Restore last active tab
+        // Restore last active tab on page load
         var lastTab = window.sessionStorage && sessionStorage.getItem('aluc_active_tab');
         if (lastTab) {
-            var $btn = $('[data-tab="' + lastTab + '"]').not('[data-pro]');
-            if ($btn.length) {
-                $btn.trigger('click');
+            var $restore = $('[data-tab="' + lastTab + '"]');
+            if ($restore.length) {
+                $restore.trigger('click');
             }
         }
 
@@ -51,7 +47,7 @@
             }
 
             $btn.addClass('loading').prop('disabled', true);
-            $btn.find('.aluc-btn-text').text('Saving…');
+            $btn.find('.aluc-btn-text').text('Saving\u2026');
 
             $.ajax({
                 url:  aluc_core.ajax_url,
@@ -65,7 +61,6 @@
                     if (res.success) {
                         $ok.find('.aluc-notice-msg').text(res.data.message);
                         $ok.addClass('show');
-                        // Update the current-URL display
                         var base = window.location.origin + '/';
                         $('#aluc-current-url-display').text(base + res.data.slug + '/');
                         setTimeout(function () {
@@ -95,17 +90,17 @@
             var $fill = $('#aluc-score-fill');
             if (!$fill.length) return;
 
-            var total = parseFloat($fill.data('total')) || 283; // 2*π*45
-            var pct   = parseFloat($fill.data('pct'))   || 0;
+            var total  = parseFloat($fill.data('total')) || 283;
+            var pct    = parseFloat($fill.data('pct'))   || 0;
             var offset = total - (total * pct / 100);
             $fill.css('stroke-dasharray', total);
-            $fill.css('stroke-dashoffset', total); // start at 0
+            $fill.css('stroke-dashoffset', total);
             setTimeout(function () {
                 $fill.css('stroke-dashoffset', offset);
             }, 200);
         }
 
-        /* ── Toggle: basic feedback (free toggles) ────────────── */
+        /* ── Toggle: free option toggles ─────────────────────── */
         $('.aluc-free-toggle').on('change', function () {
             var key   = $(this).data('option');
             var value = $(this).is(':checked') ? 1 : 0;
@@ -114,7 +109,7 @@
                 url:  aluc_core.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'aluc_save_option',
+                    action:       'aluc_save_option',
                     option_key:   key,
                     option_value: value,
                     _nonce:       aluc_core.nonce
@@ -122,15 +117,21 @@
             });
         });
 
-        /* ── Pro tab click → show modal hint ─────────────────── */
-        $('.aluc-tab-btn[data-pro]').on('click', function () {
-            // Scroll to upgrade card
-            var $card = $('.aluc-upgrade-card');
-            if ($card.length) {
-                $('html, body').animate({ scrollTop: $card.offset().top - 40 }, 400);
-                $card.css({ outline: '2px solid #f59e0b', borderRadius: '16px' });
-                setTimeout(function () { $card.css('outline', ''); }, 1500);
+        /* ── Footer Upgrade Banner Dismiss ───────────────────── */
+        var $banner = $('#aluc-footer-upgrade-banner');
+        if ($banner.length) {
+            // Hide if already dismissed this session
+            if (window.sessionStorage && sessionStorage.getItem('aluc_banner_dismissed')) {
+                $banner.hide();
             }
-        });
+
+            $('#aluc-banner-dismiss').on('click', function () {
+                $banner.slideUp(300);
+                if (window.sessionStorage) {
+                    sessionStorage.setItem('aluc_banner_dismissed', '1');
+                }
+            });
+        }
+
     });
 })(jQuery);

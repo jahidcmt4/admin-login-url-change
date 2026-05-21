@@ -1079,6 +1079,110 @@ textarea.aluc-input:focus {
     }
 }
 
+/* ── Pro Tab: Textarea & Select ───────────────────────────── */
+.aluc-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    height: auto;
+    resize: vertical;
+    font-family: 'Courier New', Consolas, monospace;
+    line-height: 1.6;
+}
+
+select.aluc-input {
+    cursor: not-allowed;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2380868b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+
+/* ── Pro Tab: Country / Role chip grid ────────────────────── */
+.aluc-country-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.aluc-country-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: #f8f9fa;
+    border: 1.5px solid #dadce0;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1a1a2e;
+    cursor: not-allowed;
+    transition: all 0.15s ease;
+}
+
+.aluc-country-chip input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    accent-color: #1a73e8;
+    cursor: not-allowed;
+}
+
+.aluc-country-chip:has(input:checked) {
+    background: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+/* ── Pro Tab: Bottom CTA bar ──────────────────────────────── */
+.aluc-pro-cta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.aluc-pro-cta-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.aluc-pro-cta-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.aluc-pro-cta-left strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.aluc-pro-cta-left p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.aluc-pro-cta-bar .aluc-btn-pro {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
 /* ── Suppress ALL WP Admin Notices on this page ───────────── */
 body.settings_page_admin-login-url-change .notice,
 body.settings_page_admin-login-url-change .updated,
@@ -1090,4 +1194,441 @@ body.settings_page_admin-login-url-change .notice-info,
 body.settings_page_admin-login-url-change .notice-success,
 body.settings_page_admin-login-url-change .is-dismissible {
     display: none !important;
+}
+
+/* ── Page Header Right (upgrade btn + badge) ──────────────── */
+.aluc-page-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ── Header Upgrade Button ────────────────────────────────── */
+.aluc-header-upgrade-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
+    font-family: inherit;
+    letter-spacing: 0.1px;
+}
+
+.aluc-header-upgrade-btn svg {
+    width: 13px;
+    height: 13px;
+    fill: #fff;
+}
+
+.aluc-header-upgrade-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.5);
+    color: #fff;
+}
+
+.aluc-header-upgrade-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+    color: #fff;
+}
+
+/* ── Pro Version Badge (in header h1) ────────────────────── */
+.aluc-pro-version-badge {
+    font-size: 10px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 6px;
+    vertical-align: middle;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.4);
+}
+
+/* ── Upgrade Page Card (clean pro feature showcase) ───────── */
+.aluc-upgrade-page-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8eaed;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.aluc-upgrade-page-top {
+    padding: 48px 32px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, #fafbff 0%, #ffffff 100%);
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.aluc-upgrade-page-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.aluc-upgrade-page-icon.red   { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.aluc-upgrade-page-icon.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.aluc-upgrade-page-icon.blue  { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.aluc-upgrade-page-icon.purple{ background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.aluc-upgrade-page-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+
+.aluc-upgrade-page-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: #fff;
+}
+
+.aluc-upgrade-page-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 1px solid #f59e0b;
+    color: #92400e;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.aluc-upgrade-page-badge::before {
+    content: '⭐';
+    font-size: 11px;
+}
+
+.aluc-upgrade-page-top h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.aluc-upgrade-page-subtitle {
+    font-size: 13.5px;
+    color: #5f6368;
+    margin: 0 auto 28px;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.aluc-upgrade-page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    letter-spacing: 0.2px;
+}
+
+.aluc-upgrade-page-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+}
+
+.aluc-upgrade-page-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(245, 158, 11, 0.5);
+    color: #fff;
+}
+
+.aluc-upgrade-page-features {
+    padding: 28px 32px;
+}
+
+.aluc-upgrade-page-features h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aluc-upgrade-feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+@media (max-width: 720px) {
+    .aluc-upgrade-feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.aluc-upgrade-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 12px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.aluc-upgrade-feature-item:hover {
+    background: #f0f4ff;
+    border-color: #c5d5f5;
+}
+
+.aluc-upgrade-feature-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+}
+
+.aluc-upgrade-feature-check svg {
+    width: 15px;
+    height: 15px;
+    fill: #fff;
+}
+
+.aluc-upgrade-feature-item strong {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 3px;
+    line-height: 1.3;
+}
+
+.aluc-upgrade-feature-item span {
+    font-size: 11.5px;
+    color: #80868b;
+    line-height: 1.4;
+}
+
+/* ── Footer Upgrade Banner ────────────────────────────────── */
+.aluc-footer-upgrade-banner {
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.aluc-footer-upgrade-banner::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.aluc-footer-upgrade-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 10%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.aluc-footer-upgrade-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 28px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.aluc-footer-upgrade-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}
+
+.aluc-footer-upgrade-emoji {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.aluc-footer-upgrade-left strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.aluc-footer-upgrade-left span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.4;
+}
+
+.aluc-footer-upgrade-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.aluc-footer-upgrade-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 22px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    white-space: nowrap;
+}
+
+.aluc-footer-upgrade-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: #fff;
+}
+
+.aluc-footer-upgrade-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.55);
+    color: #fff;
+}
+
+.aluc-footer-upgrade-dismiss {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    flex-shrink: 0;
+}
+
+.aluc-footer-upgrade-dismiss:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.aluc-footer-upgrade-dismiss svg {
+    width: 14px;
+    height: 14px;
+    fill: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Pro Active Card in Sidebar ───────────────────────────── */
+.aluc-pro-active-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1.5px solid #bbf7d0;
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+}
+
+.aluc-pro-active-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.aluc-pro-active-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+}
+
+.aluc-pro-active-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #166534;
+    margin: 0 0 6px;
+}
+
+.aluc-pro-active-card p {
+    font-size: 12px;
+    color: #4d7c5a;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── btn-sm (small pro button in card headers) ────────────── */
+.aluc-btn-sm {
+    padding: 7px 14px;
+    font-size: 12px;
+}
+
+/* ── Responsive footer banner ─────────────────────────────── */
+@media (max-width: 720px) {
+    .aluc-footer-upgrade-inner {
+        padding: 16px 18px;
+    }
+    .aluc-footer-upgrade-left span {
+        display: none;
+    }
+    .aluc-page-header-right {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+    }
+    .aluc-header-upgrade-btn {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
 }
