@@ -359,19 +359,33 @@ textarea.aluc-input {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#aluc-new-login-url {
-    border: 0px solid;
-}
-
 input.aluc-input:focus,
 textarea.aluc-input:focus {
     border-color: #1a73e8;
     box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.12);
 }
 
-#aluc-new-login-url:focus {
-    box-shadow: none;
-    border: none;
+#aluc-new-login-url,
+#aluc-pro-ip-auto-ban,
+#aluc-pro-ip-ban-duration,
+#aluc-pro-ll-max-attempts,
+#aluc-pro-ll-lockout-duration,
+#aluc-pro-ll-lockout-mins,
+#aluc-pro-ll-window-mins,
+#aluc-pro-2fa-expiry {
+    border: 0px solid;
+}
+
+#aluc-new-login-url:focus,
+#aluc-pro-ip-auto-ban:focus,
+#aluc-pro-ip-ban-duration:focus,
+#aluc-pro-ll-max-attempts:focus,
+#aluc-pro-ll-lockout-duration:focus,
+#aluc-pro-ll-lockout-mins:focus,
+#aluc-pro-ll-window-mins:focus,
+#aluc-pro-2fa-expiry:focus {
+    box-shadow: none !important;
+    border: none !important;
 }
 
 /* Remove the old has-prefix padding override (no longer needed) */
@@ -1192,7 +1206,16 @@ body.settings_page_admin-login-url-change .notice-error,
 body.settings_page_admin-login-url-change .notice-warning,
 body.settings_page_admin-login-url-change .notice-info,
 body.settings_page_admin-login-url-change .notice-success,
-body.settings_page_admin-login-url-change .is-dismissible {
+body.settings_page_admin-login-url-change .is-dismissible,
+body.toplevel_page_admin-login-url-change .notice,
+body.toplevel_page_admin-login-url-change .updated,
+body.toplevel_page_admin-login-url-change .update-nag,
+body.toplevel_page_admin-login-url-change .error:not(.aluc-notice-error),
+body.toplevel_page_admin-login-url-change .notice-error,
+body.toplevel_page_admin-login-url-change .notice-warning,
+body.toplevel_page_admin-login-url-change .notice-info,
+body.toplevel_page_admin-login-url-change .notice-success,
+body.toplevel_page_admin-login-url-change .is-dismissible {
     display: none !important;
 }
 
@@ -1282,11 +1305,25 @@ body.settings_page_admin-login-url-change .is-dismissible {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.aluc-upgrade-page-icon.red   { background: linear-gradient(135deg, #ef4444, #dc2626); }
-.aluc-upgrade-page-icon.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.aluc-upgrade-page-icon.blue  { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-.aluc-upgrade-page-icon.purple{ background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-.aluc-upgrade-page-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+.aluc-upgrade-page-icon.red {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.aluc-upgrade-page-icon.amber {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.aluc-upgrade-page-icon.blue {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.aluc-upgrade-page-icon.purple {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.aluc-upgrade-page-icon.green {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+}
 
 .aluc-upgrade-page-icon svg {
     width: 32px;
@@ -1490,7 +1527,7 @@ body.settings_page_admin-login-url-change .is-dismissible {
     font-size: 28px;
     line-height: 1;
     flex-shrink: 0;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .aluc-footer-upgrade-left strong {
@@ -1619,14 +1656,17 @@ body.settings_page_admin-login-url-change .is-dismissible {
     .aluc-footer-upgrade-inner {
         padding: 16px 18px;
     }
+
     .aluc-footer-upgrade-left span {
         display: none;
     }
+
     .aluc-page-header-right {
         flex-direction: column;
         align-items: flex-end;
         gap: 6px;
     }
+
     .aluc-header-upgrade-btn {
         font-size: 11px;
         padding: 6px 12px;

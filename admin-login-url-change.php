@@ -3,9 +3,9 @@
  * Plugin Name:       Admin login URL Change
  * Plugin URI:        https://wordpress.org/plugins/admin-login-url-change/
  * Description:       Allows you to Change your WordPress WebSite Login URL.
- * Version:           1.1.6
+ * Version:           1.2.0
  * Requires at least: 4.7
- * Tested up to:      6.9
+ * Tested up to:      7.0
  * Requires PHP:      5.3
  * Author:            jahidcse
  * Author URI:        https://profiles.wordpress.org/jahidcse/
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 final class ALUC_Plugin {
 
-    const VERSION = '1.1.6';
+    const VERSION = '1.2.0';
     const TEXT_DOMAIN = 'admin-login-url-change';
 
     private static $instance = null;
@@ -35,6 +35,7 @@ final class ALUC_Plugin {
 
     private function __construct() {
         $this->define_constants();
+        $this->init_freemius();
         $this->includes();
         $this->init_hooks();
     }
@@ -45,6 +46,37 @@ final class ALUC_Plugin {
         define( 'ALUC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
         define( 'ALUC_PLUGIN_URL',  plugin_dir_url( __FILE__ ) );
         define( 'ALUC_PLUGIN_BASE',  plugin_basename( __FILE__ ) );
+    }
+
+    /**
+     * Initialize Freemius SDK.
+     */
+    public function init_freemius() {
+        global $aluc_fs;
+        if ( ! isset( $aluc_fs ) ) {
+            // Activate multisite network integration.
+            if ( ! defined( 'WP_FS__PRODUCT_30294_MULTISITE' ) ) {
+                define( 'WP_FS__PRODUCT_30294_MULTISITE', true );
+            }
+            // Include Freemius SDK.
+            require_once dirname( __FILE__ ) . '/includes/vendor/start.php';
+            $aluc_fs = fs_dynamic_init( array(
+                'id'               => '30294',
+                'slug'             => 'admin-login-url-change',
+                'type'             => 'plugin',
+                'public_key'       => 'pk_2c94cff45c34767d817239ab7a965',
+                'is_premium'       => false,
+                'has_addons'       => false,
+                'has_paid_plans'   => true,
+                'is_org_compliant' => true,
+                'menu'             => array(
+                    'slug'    => 'admin-login-url-change',
+                    'support' => false,
+                ),
+                'is_live'          => true,
+            ) );
+        }
+        return $aluc_fs;
     }
 
     private function includes() {
@@ -58,7 +90,7 @@ final class ALUC_Plugin {
 
     public function aluc_activated_callback($plugin){
         if ( plugin_basename( __FILE__ ) == $plugin ) {
-            wp_redirect( admin_url( 'options-general.php?page=admin-login-url-change') );
+            wp_redirect( admin_url( 'admin.php?page=admin-login-url-change') );
             die();
         }
     }
@@ -72,8 +104,19 @@ function ALUC() {
 }
 ALUC();
 
+// Define easy access helper function if not defined already.
+if ( ! is_plugin_active( 'admin-login-url-change-pro/admin-login-url-change-pro.php' ) && ! function_exists( 'aluc_fs' ) ) {
+    function aluc_fs() {
+        return ALUC()->init_freemius();
+    }
+}
+
+// Signal that SDK was initiated.
+// Note: This action is triggered right after class instantiates Freemius.
+do_action( 'aluc_fs_loaded' );
+
 /**
- * Activation / Deactivation
+ * Activation / Deactivation hooks
  */
 register_activation_hook( __FILE__, function () {
     ALUC(); // load plugin

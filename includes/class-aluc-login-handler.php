@@ -47,7 +47,7 @@ class ALUC_Login_Handler {
     }
 
     function admin_login_url_change_add_page() {
-        add_submenu_page( 'options-general.php', 'Admin login URL Change', 'Admin login URL Change', 'manage_options', 'admin-login-url-change', array( &$this, 'settingsPanel' ) );
+        add_menu_page( 'Admin login URL Change', 'Admin Login Slug', 'manage_options', 'admin-login-url-change', array( &$this, 'settingsPanel' ), 'dashicons-lock', 40 );
     }
 
     /**
@@ -55,7 +55,7 @@ class ALUC_Login_Handler {
      */
     public function suppress_admin_notices() {
         $screen = get_current_screen();
-        if ( $screen && 'settings_page_admin-login-url-change' === $screen->id ) {
+        if ( $screen && 'toplevel_page_admin-login-url-change' === $screen->id ) {
             remove_all_actions('admin_notices');
             remove_all_actions('all_admin_notices');
         }
@@ -104,7 +104,7 @@ class ALUC_Login_Handler {
                 </div>
                 <div class="aluc-page-header-right">
                     <?php if ( ! $is_pro ) : ?>
-                    <a href="https://wpassisthub.com/" target="_blank" class="aluc-header-upgrade-btn" id="aluc-header-upgrade-btn">
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-header-upgrade-btn" id="aluc-header-upgrade-btn">
                         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                     </a>
@@ -404,7 +404,7 @@ class ALUC_Login_Handler {
                                 <div class="aluc-upgrade-page-badge"><?php esc_html_e( 'Pro Feature', 'admin-login-url-change' ); ?></div>
                                 <h2><?php echo esc_html( $tab['label'] ); ?></h2>
                                 <p class="aluc-upgrade-page-subtitle"><?php echo esc_html( $tab['desc'] ); ?></p>
-                                <a href="https://wpassisthub.com/" target="_blank" class="aluc-upgrade-page-btn">
+                                <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-upgrade-page-btn">
                                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                     <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                                 </a>
@@ -461,7 +461,7 @@ class ALUC_Login_Handler {
                         </div>
                     </div>
                     <div class="aluc-footer-upgrade-right">
-                        <a href="https://wpassisthub.com/" target="_blank" class="aluc-footer-upgrade-btn">
+                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-footer-upgrade-btn">
                             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                         </a>
@@ -552,10 +552,6 @@ class ALUC_Login_Handler {
                     <span><?php esc_html_e( 'Robots.txt', 'admin-login-url-change' ); ?></span>
                     <span class="aluc-status-ok"><?php esc_html_e( 'Protected', 'admin-login-url-change' ); ?></span>
                 </div>
-                <div class="aluc-status-row">
-                    <span><?php esc_html_e( 'License', 'admin-login-url-change' ); ?></span>
-                    <span class="aluc-status-warn"><?php esc_html_e( 'Free', 'admin-login-url-change' ); ?></span>
-                </div>
             </div>
 
             <!-- Support links -->
@@ -570,7 +566,7 @@ class ALUC_Login_Handler {
                     </div>
                     <div class="aluc-support-arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
                 </a>
-                <a href="https://wordpress.org/support/plugin/admin-login-url-change/reviews/#new-post" target="_blank">
+                <a href="https://wordpress.org/support/plugin/admin-login-url-change/reviews/?filter=5/#new-post" target="_blank">
                     <div class="aluc-support-icon orange">
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
@@ -605,7 +601,7 @@ class ALUC_Login_Handler {
                     <li><?php esc_html_e( 'Real-time attack dashboard', 'admin-login-url-change' ); ?></li>
                     <li><?php esc_html_e( 'Priority support', 'admin-login-url-change' ); ?></li>
                 </ul>
-                <a href="https://wpassisthub.com/" target="_blank" class="aluc-btn-upgrade">
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-btn-upgrade">
                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                 </a>
@@ -648,7 +644,7 @@ class ALUC_Login_Handler {
                                 </div>
                             </div>
                             <?php if ( ! $is_pro ) : ?>
-                                <a href="https://wpassisthub.com/" target="_blank" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
+                                <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
                                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                     <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                                 </a>
@@ -731,7 +727,7 @@ class ALUC_Login_Handler {
                                 </div>
                             </div>
                             <?php if ( ! $is_pro ) : ?>
-                                <a href="https://wpassisthub.com/" target="_blank" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
+                                <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
                                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                     <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                                 </a>
@@ -804,7 +800,7 @@ class ALUC_Login_Handler {
                                 </div>
                             </div>
                             <?php if ( ! $is_pro ) : ?>
-                                <a href="https://wpassisthub.com/" target="_blank" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
+                                <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
                                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                     <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                                 </a>
@@ -879,7 +875,7 @@ class ALUC_Login_Handler {
                                 </div>
                             </div>
                             <?php if ( ! $is_pro ) : ?>
-                                <a href="https://wpassisthub.com/" target="_blank" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
+                                <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-btn aluc-btn-pro aluc-btn-sm" style="margin-left: auto;">
                                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                     <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
                                 </a>
@@ -969,7 +965,7 @@ class ALUC_Login_Handler {
     }
 
     function admin_login_url_change_page_settings( $links ) {
-        $link = sprintf( "<a href='%s' style='color:#2271b1;'>%s</a>", admin_url( 'options-general.php?page=admin-login-url-change' ), __( 'Settings', 'admin-login-url-change' ) );
+        $link = sprintf( "<a href='%s' style='color:#2271b1;'>%s</a>", admin_url( 'admin.php?page=admin-login-url-change' ), __( 'Settings', 'admin-login-url-change' ) );
         array_push( $links, $link );
     
         return $links;
@@ -978,7 +974,7 @@ class ALUC_Login_Handler {
     function admin_login_url_change_css(){
         // Only load on our settings page
         $screen = get_current_screen();
-        if ( ! $screen || 'settings_page_admin-login-url-change' !== $screen->id ) {
+        if ( ! $screen || 'toplevel_page_admin-login-url-change' !== $screen->id ) {
             return;
         }
 
@@ -1031,7 +1027,8 @@ class ALUC_Login_Handler {
         $path = trim( wp_parse_url( $req, PHP_URL_PATH ), '/' );
         
         if ( ! is_user_logged_in() && 
-            ( preg_match('#(^|/)wp-admin(/|$)#i', $path) || preg_match('#(^|/)admin(/|$)#i', $path) ) ) {
+            ( preg_match('#(^|/)wp-admin(/|$)#i', $path) || preg_match('#(^|/)admin(/|$)#i', $path) ) &&
+            ! preg_match('#admin-ajax\.php$#i', $path) ) {
             remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
             wp_safe_redirect( home_url('/404'), 302 );
             exit;
