@@ -57,9 +57,9 @@ No, the plugin is fully compatible with native WordPress login flows and integra
 
 = 1.2.0 =
 
+* Improved: Submenu "Admin Login URL Change" Position as a top-level menu "Admin Login Slug".
 * Added: Seamless integration hooks for Pro features (IP Blocker, searchable Country Blocker, Login Limiter, and Two-Factor Authentication).
 * Improved: Restructured dashboard settings page into a stunning, responsive Material-style grid with notice suppression.
-* Improved: Sidebar navigation placement as a premium top-level "Login Slug" menu item.
 * Improved: Codebase refactored into clean Object-Oriented Programming (OOP) structure.
 * Added: Compatibility with WordPress 7.0
 
