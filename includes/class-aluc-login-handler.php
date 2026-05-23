@@ -381,9 +381,7 @@ class ALUC_Login_Handler {
                     'subtitle' => __( 'Add an extra layer of security with 2FA', 'admin-login-url-change' ),
                     'desc'     => __( 'Require a time-based one-time password (TOTP) or email code on every login.', 'admin-login-url-change' ),
                     'features' => [
-                        [ 'title' => __( 'Google Authenticator / Authy support', 'admin-login-url-change' ), 'desc' => __( 'TOTP compatible with all major apps', 'admin-login-url-change' ) ],
                         [ 'title' => __( 'Email-based OTP fallback', 'admin-login-url-change' ),            'desc' => __( 'Works without an authenticator app', 'admin-login-url-change' ) ],
-                        [ 'title' => __( 'Per-role 2FA enforcement', 'admin-login-url-change' ),            'desc' => __( 'Require 2FA only for admins/editors', 'admin-login-url-change' ) ],
                         [ 'title' => __( 'Trusted device remember (30 days)', 'admin-login-url-change' ),   'desc' => __( 'Skip 2FA on trusted devices', 'admin-login-url-change' ) ],
                     ],
                 ],
@@ -890,9 +888,7 @@ class ALUC_Login_Handler {
                             <div class="aluc-form-group">
                                 <label class="aluc-label"><?php esc_html_e( 'Authentication Method', 'admin-login-url-change' ); ?></label>
                                 <select name="method" class="aluc-input aluc-input-full" <?php echo $disabled; ?>>
-                                    <option value="totp"><?php esc_html_e( 'Authenticator App (Google, Authy, etc.)', 'admin-login-url-change' ); ?></option>
                                     <option value="email"><?php esc_html_e( 'Email OTP (One-time password)', 'admin-login-url-change' ); ?></option>
-                                    <option value="both"><?php esc_html_e( 'Let users choose', 'admin-login-url-change' ); ?></option>
                                 </select>
                             </div>
                             <div class="aluc-form-group">
