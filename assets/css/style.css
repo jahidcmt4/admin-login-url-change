@@ -1,126 +1,1674 @@
-.wrap h2.wp-admin-change-title {
-    padding-top: 0px;
-    font-weight: 600;
-    font-size: 20px;
-    padding-bottom: 20px;
-  }
-  
-  
-  .wp-admin-change-box p {
-    margin: 0;
-  }
-  
-  .wp-admin-change-box p label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1d2327;
-    margin-bottom: 15px;
-    display: block;
-  }
-  
-  
-  .wp-admin-change-box p input[type="text"] {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    color: #2c3338;
-    font-family: Consolas,Monaco,monospace;
-  }
-  
-  .wp-admin-change-box p input[type="submit"] {
-    border: 0px solid;
-    background: #2271b1;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .wp-admin-change-box .disable{
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-  .jh-admin-setting-box{
-    display: flex;
-    justify-content: space-between;
-  }
-  .jh-admin-setting-box .jh-admin-setting-form{
-    width: calc(100% - 344px);
-  }
-  .jh-admin-setting-box .jh-admin-setting-form .admin_url_notes ul{
+/* ============================================================
+   Admin Login URL Change — Settings Page Styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+#aluc-settings-wrap * {
+    box-sizing: border-box;
+}
+
+#aluc-settings-wrap {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     margin: 0;
     padding: 0;
-    list-style: none;
-  }
-  .jh-admin-setting-box .jh-admin-setting-form .admin_url_notes ul li{
-    margin-bottom: 15px;
-  }
-  .jh-admin-setting-box .jh-link-boxs{
-    width: 320px;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box{
-    background-color: #fff;
-    border-radius:10px;
-    margin-bottom: 15px;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box a{
-    display: block;
-    padding: 24px;
-    text-decoration: none;
-    text-align: center;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box a img{
-    margin-bottom: 15px;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box a h3{
-    font-size: 20px;
-    margin: 0;
-    color: #000;
-    display: block;
-    line-height: 24px;
-    margin-bottom: 15px;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box a p{
-    font-size: 15px;
-    margin: 0;
-    color: #000;
-    display: block;
-    line-height: 24px;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box a span{
+    max-width: 1200px;
+}
+
+/* ── Page Header ──────────────────────────────────────────── */
+.aluc-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0 20px;
     margin-bottom: 0;
-    display: inline-block;
-    border: 2px solid #003c79;
-    border-radius: 6px;
-    padding: 9px 16px;
-    font-size: 15px;
+    border-bottom: 1px solid #e8eaed;
+}
+
+.aluc-page-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.aluc-page-logo {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(26, 115, 232, 0.35);
+}
+
+.aluc-page-logo svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+}
+
+.aluc-page-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+    padding: 0;
+    line-height: 1.3;
+}
+
+.aluc-page-header h1 span {
+    font-size: 12px;
+    font-weight: 500;
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.aluc-header-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 1px solid #bbf7d0;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
     font-weight: 600;
-    color: #003c79;
-    margin-top: 15px;
-    line-height: 1;
-    transition: .3s all ease;
-  }
-  .jh-admin-setting-box .jh-link-boxs .jh-link-box a span:hover{
-    background-color: #003c79;
+    color: #166534;
+}
+
+.aluc-header-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+    animation: aluc-pulse 2s infinite;
+}
+
+@keyframes aluc-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.3);
+    }
+}
+
+/* ── Tab Navigation ───────────────────────────────────────── */
+.aluc-tab-nav {
+    display: flex;
+    gap: 2px;
+    margin: 20px 0 0;
+    border-bottom: 2px solid #e8eaed;
+    padding-bottom: 0;
+}
+
+.aluc-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5f6368;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.aluc-tab-btn:hover {
+    color: #1a73e8;
+    background: #f0f4ff;
+}
+
+.aluc-tab-btn.aluc-active {
+    color: #1a73e8;
+    border-bottom-color: #1a73e8;
+    background: #f0f4ff;
+}
+
+.aluc-tab-btn svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.aluc-tab-pro-badge {
+    font-size: 9px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #fff;
-  }
-  
-  /* Responsive */
-  
-  @media all and (max-width: 991px){
-    .jh-admin-setting-box{
-      display: flex;
-      flex-wrap: wrap;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ── Main Layout ──────────────────────────────────────────── */
+.aluc-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    margin-top: 24px;
+    align-items: start;
+}
+
+/* ── Tab Panels ───────────────────────────────────────────── */
+.aluc-tab-panel {
+    display: none;
+}
+
+.aluc-tab-panel.aluc-active {
+    display: block;
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.aluc-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8eaed;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease;
+}
+
+.aluc-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.aluc-card-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid #f1f3f4;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(180deg, #fafbff 0%, #fff 100%);
+}
+
+.aluc-card-header-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.aluc-card-header-icon.blue {
+    background: #e8f0fe;
+}
+
+.aluc-card-header-icon.green {
+    background: #e6f4ea;
+}
+
+.aluc-card-header-icon.amber {
+    background: #fef3c7;
+}
+
+.aluc-card-header-icon.red {
+    background: #fce8e6;
+}
+
+.aluc-card-header-icon.purple {
+    background: #f3e8ff;
+}
+
+.aluc-card-header-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.aluc-card-header-icon.blue svg {
+    fill: #1a73e8;
+}
+
+.aluc-card-header-icon.green svg {
+    fill: #1e8e3e;
+}
+
+.aluc-card-header-icon.amber svg {
+    fill: #f59e0b;
+}
+
+.aluc-card-header-icon.red svg {
+    fill: #d93025;
+}
+
+.aluc-card-header-icon.purple svg {
+    fill: #9333ea;
+}
+
+.aluc-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.aluc-card-subtitle {
+    font-size: 12px;
+    color: #80868b;
+    margin: 2px 0 0;
+    font-weight: 400;
+}
+
+.aluc-card-body {
+    padding: 24px;
+}
+
+/* ── Form Styles ──────────────────────────────────────────── */
+.aluc-form-group {
+    margin-bottom: 20px;
+}
+
+.aluc-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.aluc-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+.aluc-label-required {
+    color: #d93025;
+    font-size: 14px;
+}
+
+/* ── Input Group (prefix + field joined together) ─────────── */
+.aluc-input-wrapper {
+    display: flex;
+    align-items: stretch;
+    border: 1.5px solid #dadce0;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.aluc-input-wrapper:focus-within {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.12);
+}
+
+.aluc-input-prefix {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    background: #f8f9fa;
+    border-right: 1.5px solid #dadce0;
+    font-size: 12px;
+    color: #80868b;
+    font-weight: 500;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+    flex-shrink: 0;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    cursor: default;
+}
+
+.aluc-input {
+    flex: 1;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 14px;
+    border: none;
+    background: transparent;
+    color: #1a1a2e;
+    font-family: 'Courier New', Consolas, monospace;
+    outline: none;
+    transition: none;
+}
+
+/* Standalone input (no prefix wrapper) */
+input.aluc-input,
+textarea.aluc-input {
+    border: 1.5px solid #dadce0;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input.aluc-input:focus,
+textarea.aluc-input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.12);
+}
+
+#aluc-new-login-url,
+#aluc-pro-ip-auto-ban,
+#aluc-pro-ip-ban-duration,
+#aluc-pro-ll-max-attempts,
+#aluc-pro-ll-lockout-duration,
+#aluc-pro-ll-lockout-mins,
+#aluc-pro-ll-window-mins,
+#aluc-pro-2fa-expiry {
+    border: 0px solid;
+}
+
+#aluc-new-login-url:focus,
+#aluc-pro-ip-auto-ban:focus,
+#aluc-pro-ip-ban-duration:focus,
+#aluc-pro-ll-max-attempts:focus,
+#aluc-pro-ll-lockout-duration:focus,
+#aluc-pro-ll-lockout-mins:focus,
+#aluc-pro-ll-window-mins:focus,
+#aluc-pro-2fa-expiry:focus {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Remove the old has-prefix padding override (no longer needed) */
+.aluc-input.has-prefix {
+    padding-left: 14px;
+}
+
+.aluc-hint {
+    font-size: 11.5px;
+    color: #80868b;
+    margin-top: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    line-height: 1.5;
+}
+
+.aluc-hint svg {
+    width: 13px;
+    height: 13px;
+    fill: #9aa0a6;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Current URL display */
+.aluc-current-url-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+}
+
+.aluc-current-url-box svg {
+    width: 16px;
+    height: 16px;
+    fill: #1e8e3e;
+    flex-shrink: 0;
+}
+
+.aluc-current-url-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #80868b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aluc-current-url-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e8e3e;
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+}
+
+/* ── Save Button ──────────────────────────────────────────── */
+.aluc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.aluc-btn-primary {
+    background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(26, 115, 232, 0.3);
+}
+
+.aluc-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(26, 115, 232, 0.4);
+}
+
+.aluc-btn-primary:active {
+    transform: translateY(0);
+}
+
+.aluc-btn-primary:disabled,
+.aluc-btn-primary.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.aluc-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+}
+
+.aluc-btn-outline {
+    background: #fff;
+    color: #1a73e8;
+    border: 1.5px solid #1a73e8;
+}
+
+.aluc-btn-outline:hover {
+    background: #e8f0fe;
+}
+
+/* ── Notices (inline, no WP default) ─────────────────────── */
+.aluc-notice {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    animation: aluc-fadein 0.3s ease;
+}
+
+@keyframes aluc-fadein {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
     }
-    .jh-admin-setting-box .jh-admin-setting-form{
-      width: 100%;
-      margin-bottom: 30px;
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    .jh-admin-setting-box .jh-link-boxs{
-      width: 100%;
+}
+
+.aluc-notice.show {
+    display: flex;
+}
+
+.aluc-notice svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.aluc-notice-success {
+    background: #e6f4ea;
+    color: #1e8e3e;
+    border: 1px solid #a8d5b5;
+}
+
+.aluc-notice-success svg {
+    fill: #1e8e3e;
+}
+
+.aluc-notice-error {
+    background: #fce8e6;
+    color: #d93025;
+    border: 1px solid #f5b7b1;
+}
+
+.aluc-notice-error svg {
+    fill: #d93025;
+}
+
+/* ── Toggle Switch ────────────────────────────────────────── */
+.aluc-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.aluc-toggle-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.aluc-toggle-row:first-child {
+    padding-top: 0;
+}
+
+.aluc-toggle-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 3px;
+}
+
+.aluc-toggle-info p {
+    font-size: 12px;
+    color: #80868b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.aluc-toggle {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.aluc-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.aluc-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #dadce0;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.aluc-toggle-slider::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.aluc-toggle input:checked+.aluc-toggle-slider {
+    background: #1a73e8;
+}
+
+.aluc-toggle input:checked+.aluc-toggle-slider::before {
+    transform: translateX(18px);
+}
+
+/* ── Pro Feature Overlay ──────────────────────────────────── */
+.aluc-pro-panel {
+    position: relative;
+}
+
+.aluc-pro-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    z-index: 10;
+    text-align: center;
+    padding: 24px;
+}
+
+.aluc-pro-lock-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.aluc-pro-lock-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+}
+
+.aluc-pro-overlay h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.aluc-pro-overlay p {
+    font-size: 13px;
+    color: #5f6368;
+    margin: 0;
+    max-width: 260px;
+    line-height: 1.5;
+}
+
+.aluc-btn-pro {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+
+.aluc-btn-pro:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
+    color: #fff;
+}
+
+.aluc-pro-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    opacity: 0.4;
+}
+
+/* ── Sidebar Widgets ──────────────────────────────────────── */
+.aluc-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Status widget */
+.aluc-status-widget {
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    border-radius: 16px;
+    padding: 22px;
+    color: #fff;
+}
+
+.aluc-status-widget h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 14px;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.aluc-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 12.5px;
+}
+
+.aluc-status-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.aluc-status-row span:first-child {
+    opacity: 0.75;
+    font-weight: 500;
+}
+
+.aluc-status-row span:last-child {
+    font-weight: 700;
+    color: #a8d8ff;
+}
+
+.aluc-status-row .aluc-status-ok {
+    color: #86efac;
+}
+
+.aluc-status-row .aluc-status-warn {
+    color: #fcd34d;
+}
+
+/* Support / link boxes */
+.aluc-support-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8eaed;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.aluc-support-card a {
+    display: block;
+    padding: 16px 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #f1f3f4;
+    transition: background 0.15s ease;
+}
+
+.aluc-support-card a:last-child {
+    border-bottom: none;
+}
+
+.aluc-support-card a:hover {
+    background: #f8f9ff;
+}
+
+.aluc-support-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.aluc-support-icon.blue {
+    background: #e8f0fe;
+}
+
+.aluc-support-icon.green {
+    background: #e6f4ea;
+}
+
+.aluc-support-icon.orange {
+    background: #fff3e0;
+}
+
+.aluc-support-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+.aluc-support-icon.blue svg {
+    fill: #1a73e8;
+}
+
+.aluc-support-icon.green svg {
+    fill: #1e8e3e;
+}
+
+.aluc-support-icon.orange svg {
+    fill: #f57c00;
+}
+
+.aluc-support-text h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 2px;
+}
+
+.aluc-support-text p {
+    font-size: 11.5px;
+    color: #80868b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.aluc-support-arrow {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.aluc-support-arrow svg {
+    width: 14px;
+    height: 14px;
+    fill: #dadce0;
+}
+
+/* ── Upgrade CTA card ─────────────────────────────────────── */
+.aluc-upgrade-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.aluc-upgrade-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.aluc-upgrade-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px;
+}
+
+.aluc-upgrade-card p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.aluc-upgrade-features {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    text-align: left;
+}
+
+.aluc-upgrade-features li {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.aluc-upgrade-features li::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322c55e'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E") no-repeat center/contain;
+    flex-shrink: 0;
+}
+
+.aluc-btn-upgrade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    padding: 11px 20px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+}
+
+.aluc-btn-upgrade:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    color: #fff;
+}
+
+.aluc-btn-upgrade svg {
+    width: 14px;
+    height: 14px;
+    fill: #fff;
+}
+
+/* ── Security Score ───────────────────────────────────────── */
+.aluc-score-ring {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0 14px;
+}
+
+.aluc-score-ring svg {
+    transform: rotate(-90deg);
+}
+
+.aluc-score-ring .track {
+    fill: none;
+    stroke: #e8eaed;
+    stroke-width: 8;
+}
+
+.aluc-score-ring .fill {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke: url(#scoreGrad);
+    transition: stroke-dashoffset 1s ease;
+}
+
+.aluc-score-center {
+    position: absolute;
+    text-align: center;
+}
+
+.aluc-score-center .score-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a2e;
+    line-height: 1;
+}
+
+.aluc-score-center .score-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #80868b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aluc-score-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+/* ── Checklist ────────────────────────────────────────────── */
+.aluc-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aluc-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    color: #1a1a2e;
+    padding: 7px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.aluc-checklist li:last-child {
+    border-bottom: none;
+}
+
+.aluc-check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.aluc-check-icon.ok {
+    background: #e6f4ea;
+}
+
+.aluc-check-icon.ok svg {
+    fill: #1e8e3e;
+    width: 12px;
+    height: 12px;
+}
+
+.aluc-check-icon.warn {
+    background: #fef3c7;
+}
+
+.aluc-check-icon.warn svg {
+    fill: #d97706;
+    width: 12px;
+    height: 12px;
+}
+
+.aluc-check-icon.no {
+    background: #fce8e6;
+}
+
+.aluc-check-icon.no svg {
+    fill: #d93025;
+    width: 12px;
+    height: 12px;
+}
+
+/* ── "Other Settings" toggles ─────────────────────────────── */
+.aluc-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #80868b;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0 0 12px;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .aluc-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .aluc-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 720px) {
+    .aluc-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .aluc-tab-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .aluc-tab-pro-badge {
+        display: none;
+    }
+}
+
+/* ── Pro Tab: Textarea & Select ───────────────────────────── */
+.aluc-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    height: auto;
+    resize: vertical;
+    font-family: 'Courier New', Consolas, monospace;
+    line-height: 1.6;
+}
+
+select.aluc-input {
+    cursor: not-allowed;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2380868b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+
+/* ── Pro Tab: Country / Role chip grid ────────────────────── */
+.aluc-country-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.aluc-country-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: #f8f9fa;
+    border: 1.5px solid #dadce0;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1a1a2e;
+    cursor: not-allowed;
+    transition: all 0.15s ease;
+}
+
+.aluc-country-chip input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    accent-color: #1a73e8;
+    cursor: not-allowed;
+}
+
+.aluc-country-chip:has(input:checked) {
+    background: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+/* ── Pro Tab: Bottom CTA bar ──────────────────────────────── */
+.aluc-pro-cta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.aluc-pro-cta-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.aluc-pro-cta-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.aluc-pro-cta-left strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.aluc-pro-cta-left p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.aluc-pro-cta-bar .aluc-btn-pro {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* ── Suppress ALL WP Admin Notices on this page ───────────── */
+body.settings_page_admin-login-url-change .notice,
+body.settings_page_admin-login-url-change .updated,
+body.settings_page_admin-login-url-change .update-nag,
+body.settings_page_admin-login-url-change .error:not(.aluc-notice-error),
+body.settings_page_admin-login-url-change .notice-error,
+body.settings_page_admin-login-url-change .notice-warning,
+body.settings_page_admin-login-url-change .notice-info,
+body.settings_page_admin-login-url-change .notice-success,
+body.settings_page_admin-login-url-change .is-dismissible,
+body.toplevel_page_admin-login-url-change .notice,
+body.toplevel_page_admin-login-url-change .updated,
+body.toplevel_page_admin-login-url-change .update-nag,
+body.toplevel_page_admin-login-url-change .error:not(.aluc-notice-error),
+body.toplevel_page_admin-login-url-change .notice-error,
+body.toplevel_page_admin-login-url-change .notice-warning,
+body.toplevel_page_admin-login-url-change .notice-info,
+body.toplevel_page_admin-login-url-change .notice-success,
+body.toplevel_page_admin-login-url-change .is-dismissible {
+    display: none !important;
+}
+
+/* ── Page Header Right (upgrade btn + badge) ──────────────── */
+.aluc-page-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ── Header Upgrade Button ────────────────────────────────── */
+.aluc-header-upgrade-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
+    font-family: inherit;
+    letter-spacing: 0.1px;
+}
+
+.aluc-header-upgrade-btn svg {
+    width: 13px;
+    height: 13px;
+    fill: #fff;
+}
+
+.aluc-header-upgrade-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.5);
+    color: #fff;
+}
+
+.aluc-header-upgrade-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+    color: #fff;
+}
+
+/* ── Pro Version Badge (in header h1) ────────────────────── */
+.aluc-pro-version-badge {
+    font-size: 10px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 6px;
+    vertical-align: middle;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.4);
+}
+
+/* ── Upgrade Page Card (clean pro feature showcase) ───────── */
+.aluc-upgrade-page-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8eaed;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.aluc-upgrade-page-top {
+    padding: 48px 32px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, #fafbff 0%, #ffffff 100%);
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.aluc-upgrade-page-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.aluc-upgrade-page-icon.red {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.aluc-upgrade-page-icon.amber {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.aluc-upgrade-page-icon.blue {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.aluc-upgrade-page-icon.purple {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.aluc-upgrade-page-icon.green {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.aluc-upgrade-page-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: #fff;
+}
+
+.aluc-upgrade-page-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 1px solid #f59e0b;
+    color: #92400e;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.aluc-upgrade-page-badge::before {
+    content: '⭐';
+    font-size: 11px;
+}
+
+.aluc-upgrade-page-top h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.aluc-upgrade-page-subtitle {
+    font-size: 13.5px;
+    color: #5f6368;
+    margin: 0 auto 28px;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.aluc-upgrade-page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    letter-spacing: 0.2px;
+}
+
+.aluc-upgrade-page-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+}
+
+.aluc-upgrade-page-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(245, 158, 11, 0.5);
+    color: #fff;
+}
+
+.aluc-upgrade-page-features {
+    padding: 28px 32px;
+}
+
+.aluc-upgrade-page-features h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aluc-upgrade-feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+@media (max-width: 720px) {
+    .aluc-upgrade-feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.aluc-upgrade-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 12px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.aluc-upgrade-feature-item:hover {
+    background: #f0f4ff;
+    border-color: #c5d5f5;
+}
+
+.aluc-upgrade-feature-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+}
+
+.aluc-upgrade-feature-check svg {
+    width: 15px;
+    height: 15px;
+    fill: #fff;
+}
+
+.aluc-upgrade-feature-item strong {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 3px;
+    line-height: 1.3;
+}
+
+.aluc-upgrade-feature-item span {
+    font-size: 11.5px;
+    color: #80868b;
+    line-height: 1.4;
+}
+
+/* ── Footer Upgrade Banner ────────────────────────────────── */
+.aluc-footer-upgrade-banner {
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.aluc-footer-upgrade-banner::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.aluc-footer-upgrade-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 10%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.aluc-footer-upgrade-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 28px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.aluc-footer-upgrade-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}
+
+.aluc-footer-upgrade-emoji {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.aluc-footer-upgrade-left strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.aluc-footer-upgrade-left span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.4;
+}
+
+.aluc-footer-upgrade-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.aluc-footer-upgrade-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 22px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    white-space: nowrap;
+}
+
+.aluc-footer-upgrade-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: #fff;
+}
+
+.aluc-footer-upgrade-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.55);
+    color: #fff;
+}
+
+.aluc-footer-upgrade-dismiss {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    flex-shrink: 0;
+}
+
+.aluc-footer-upgrade-dismiss:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.aluc-footer-upgrade-dismiss svg {
+    width: 14px;
+    height: 14px;
+    fill: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Pro Active Card in Sidebar ───────────────────────────── */
+.aluc-pro-active-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1.5px solid #bbf7d0;
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+}
+
+.aluc-pro-active-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.aluc-pro-active-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+}
+
+.aluc-pro-active-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #166534;
+    margin: 0 0 6px;
+}
+
+.aluc-pro-active-card p {
+    font-size: 12px;
+    color: #4d7c5a;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── btn-sm (small pro button in card headers) ────────────── */
+.aluc-btn-sm {
+    padding: 7px 14px;
+    font-size: 12px;
+}
+
+/* ── Responsive footer banner ─────────────────────────────── */
+@media (max-width: 720px) {
+    .aluc-footer-upgrade-inner {
+        padding: 16px 18px;
+    }
+
+    .aluc-footer-upgrade-left span {
+        display: none;
+    }
+
+    .aluc-page-header-right {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+    }
+
+    .aluc-header-upgrade-btn {
+        font-size: 11px;
+        padding: 6px 12px;
     }
 }

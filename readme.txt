@@ -2,36 +2,42 @@
 Contributors: jahidcse
 Tags: change wp-login, login, remove wp-login, wordpress login, custom login, login customizer, custom login url, images protection, content, right click disabled, F12 disabled, Copy content, disabled, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + Shift + C, Ctrl + U, wp developers, SEO, css, html
 Requires at least: 4.7
-Tested up to: 6.9
-Stable tag: 1.1.6
+Tested up to: 7.0
+Stable tag: 1.2.0
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Donate link: https://wpassisthub.com/
 
 Allows you to Change your WordPress WebSite Login URL Slug.
 
 == Description ==
 
-Admin login URL Change is a very lightweight plugin that lets you easily and safely change the URL of the login form page to anything you want. It does not change any core files. It simply intercepts page requests and works on any WordPress website. This is great for your convenience, but it also closes the door to would-be attackers.
+Admin login URL Change is a very lightweight, highly secure plugin that lets you easily and safely change the URL of the login form page to anything you want. It does not change any core files. It simply intercepts page requests and works on any WordPress website. This is great for your convenience, but it also closes the door to would-be brute-force attackers.
 
-<strong> Why Use Admin Login URL Change? </strong>
+<strong>Why Use Admin Login URL Change?</strong>
 
-WordPress websites are common targets for automated bots and hackers attempting to gain unauthorized access via brute-force login attempts. The default login URLs are widely known, making them easy targets. Admin Login URL Change solves this problem by letting you rename your login URL to something unique, effectively closing this security loophole.
+WordPress websites are common targets for automated bots and hackers attempting to gain unauthorized access via brute-force login attempts. The default login URLs (`wp-login.php` and `wp-admin`) are widely known, making them easy targets. Admin Login URL Change solves this problem by letting you rename your login URL to something unique, effectively closing this security loophole.
 
-<strong> How to use the plugin </strong>
+### 🚀 Get Even More Security with Pro Features!
+Upgrade to the **Pro Version** to unlock elite-level protection mechanisms:
+* **IP Address Blocker**: Block individual IPs or entire CIDR ranges from even accessing your custom login page, featuring auto-ban thresholds, ban durations, and email alerts.
+* **Searchable Country Blocker**: Restrict login access to specific countries using a live, search-filtered database of 200+ global regions.
+* **Login Attempt Limiter**: Set max retries, retry windows, lockout durations, and display warning alerts to prevent dictionary and brute-force attacks.
+* **Two-Factor Authentication (2FA)**: Add an ironclad second layer of verification via Authenticator Apps (Google Authenticator, Authy, Microsoft Authenticator) or Email OTP.
 
-Add New login Slug (Example: madmin)
+<strong>How to use the plugin</strong>
 
+1. Go to your dashboard and navigate to the **Admin Login Slug** menu.
+2. Enter your custom login slug (e.g. `madmin`).
+3. Click "Save Settings". 
+4. Bookmark your new URL and test it!
 
 == Installation ==
 
 1. Install Admin login URL Change by uploading the `admin-login-url-change` directory to the `/wp-content/plugins/` directory.
 2. Activate Admin login URL Change through the `Plugins` menu in WordPress.
-3. Chanage your URL Slug by going to the Settings > Admin login URL Change menu.
-4. Now you can logout and login by new URL.(Must be a Live Server)
-
-
+3. Change your URL Slug by going to the **Admin Login Slug**
+4. Now you can logout and login by new URL.
 
 == Frequently Asked Questions ==
 
@@ -39,11 +45,24 @@ Add New login Slug (Example: madmin)
 
 Absolutely not.
 
+= Will this break standard login page actions or WooCommerce integrations? =
+
+No, the plugin is fully compatible with native WordPress login flows and integrates seamlessly with WooCommerce checkouts and account logins.
+
 == Screenshots ==
 
 1. Settings
+2. Other Settings
 
 == Changelog ==
+
+= 1.2.0 =
+
+* Improved: Submenu "Admin Login URL Change" Position as a top-level menu "Admin Login Slug".
+* Added: Seamless integration hooks for Pro features (IP Blocker, searchable Country Blocker, Login Limiter, and Two-Factor Authentication).
+* Improved: Restructured dashboard settings page into a stunning, responsive Material-style grid with notice suppression.
+* Improved: Codebase refactored into clean Object-Oriented Programming (OOP) structure.
+* Added: Compatibility with WordPress 7.0
 
 = 1.1.6 =
 
