@@ -3,9 +3,9 @@
  * Plugin Name:       Admin login URL Change
  * Plugin URI:        https://wordpress.org/plugins/admin-login-url-change/
  * Description:       Allows you to Change your WordPress WebSite Login URL.
- * Version:           1.2.0
+ * Version:           1.2.2
  * Requires at least: 4.7
- * Tested up to:      7.0
+ * Tested up to:      7.1
  * Requires PHP:      5.3
  * Author:            jahidcse
  * Author URI:        https://profiles.wordpress.org/jahidcse/
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 final class ALUC_Plugin {
 
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.2';
     const TEXT_DOMAIN = 'admin-login-url-change';
 
     private static $instance = null;
