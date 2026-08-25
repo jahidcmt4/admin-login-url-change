@@ -37,6 +37,11 @@ class ALUC_Login_Handler {
 
         add_action('wp_ajax_aluc_save_slug',   [ $self, 'aluc_save_slug_ajax' ] );
         add_action('wp_ajax_aluc_save_option', [ $self, 'aluc_save_option_ajax' ] );
+
+        // Login Attempt Log hooks
+        add_action( 'wp_login',              [ $self, 'aluc_log_login_success' ], 10, 2 );
+        add_action( 'wp_login_failed',       [ $self, 'aluc_log_login_failed' ],  10, 2 );
+        add_action( 'wp_ajax_aluc_clear_login_log', [ $self, 'aluc_clear_login_log_ajax' ] );
     }
 
     /**
@@ -122,6 +127,10 @@ class ALUC_Login_Handler {
                 <button class="aluc-tab-btn" data-tab="other">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     <?php esc_html_e( 'Other Settings', 'admin-login-url-change' ); ?>
+                </button>
+                <button class="aluc-tab-btn" data-tab="login-log">
+                    <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                    <?php esc_html_e( 'Login Log', 'admin-login-url-change' ); ?>
                 </button>
                 <button class="aluc-tab-btn" data-tab="ip-block" data-pro="1">
                     <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
@@ -273,6 +282,104 @@ class ALUC_Login_Handler {
 
                 </div><!-- .aluc-layout -->
             </div><!-- #aluc-panel-settings -->
+
+            <!-- ═══════════════ TAB: Login Log ════════════════ -->
+            <div class="aluc-tab-panel" id="aluc-panel-login-log">
+                <div class="aluc-layout">
+                    <div class="aluc-main-col">
+                        <div class="aluc-card">
+                            <div class="aluc-card-header">
+                                <div class="aluc-card-header-icon blue">
+                                    <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="aluc-card-title"><?php esc_html_e( 'Login Attempt Log', 'admin-login-url-change' ); ?></div>
+                                    <div class="aluc-card-subtitle"><?php esc_html_e( 'Last 10 login attempts on your site', 'admin-login-url-change' ); ?></div>
+                                </div>
+                                <button type="button" class="aluc-btn aluc-btn-sm aluc-log-clear-btn" id="aluc-clear-log-btn" style="margin-left:auto;">
+                                    <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                                    <span class="aluc-btn-text"><?php esc_html_e( 'Clear Log', 'admin-login-url-change' ); ?></span>
+                                </button>
+                            </div>
+                            <div class="aluc-card-body" style="padding:0;">
+                                <?php
+                                $log = get_option( 'aluc_login_log', [] );
+                                if ( empty( $log ) ) :
+                                ?>
+                                <div class="aluc-log-empty">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                    <p><?php esc_html_e( 'No login attempts recorded yet.', 'admin-login-url-change' ); ?></p>
+                                    <span><?php esc_html_e( 'Attempts will appear here once someone tries to log in.', 'admin-login-url-change' ); ?></span>
+                                </div>
+                                <?php else : ?>
+                                <div class="aluc-log-table-wrap" id="aluc-log-table-wrap">
+                                    <table class="aluc-log-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th><?php esc_html_e( 'Username', 'admin-login-url-change' ); ?></th>
+                                                <th><?php esc_html_e( 'IP Address', 'admin-login-url-change' ); ?></th>
+                                                <th><?php esc_html_e( 'Date &amp; Time', 'admin-login-url-change' ); ?></th>
+                                                <th><?php esc_html_e( 'Status', 'admin-login-url-change' ); ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ( $log as $i => $entry ) : ?>
+                                            <tr class="aluc-log-row aluc-log-row-<?php echo esc_attr( $entry['status'] ); ?>">
+                                                <td class="aluc-log-num"><?php echo esc_html( $i + 1 ); ?></td>
+                                                <td class="aluc-log-user">
+                                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                                                    <?php echo esc_html( $entry['user'] ?: '—' ); ?>
+                                                </td>
+                                                <td class="aluc-log-ip">
+                                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                                    <?php echo esc_html( $entry['ip'] ); ?>
+                                                </td>
+                                                <td class="aluc-log-time">
+                                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+                                                    <?php echo esc_html( date_i18n( 'M j, Y \a\t g:i a', $entry['time'] ) ); ?>
+                                                </td>
+                                                <td>
+                                                    <?php if ( $entry['status'] === 'success' ) : ?>
+                                                    <span class="aluc-log-badge aluc-log-badge-success">
+                                                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                                        <?php esc_html_e( 'Success', 'admin-login-url-change' ); ?>
+                                                    </span>
+                                                    <?php else : ?>
+                                                    <span class="aluc-log-badge aluc-log-badge-failed">
+                                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                                        <?php esc_html_e( 'Failed', 'admin-login-url-change' ); ?>
+                                                    </span>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <!-- Pro upsell for full log -->
+                        <?php if ( ! $is_pro ) : ?>
+                        <div class="aluc-log-pro-hint">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div>
+                                <strong><?php esc_html_e( 'Want unlimited log history + email alerts?', 'admin-login-url-change' ); ?></strong>
+                                <span><?php esc_html_e( 'Pro gives you full login audit logs, IP blocking on failed attempts, and real-time email notifications.', 'admin-login-url-change' ); ?></span>
+                            </div>
+                            <a href="<?php echo esc_url( admin_url( 'admin.php?page=admin-login-url-change-pricing' ) ); ?>" class="aluc-btn aluc-btn-sm aluc-btn-pro">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <?php esc_html_e( 'Upgrade to Pro', 'admin-login-url-change' ); ?>
+                            </a>
+                        </div>
+                        <?php endif; ?>
+
+                    </div>
+                    <?php echo $this->render_sidebar( $score, $circumference, $is_pro ); ?>
+                </div>
+            </div><!-- #aluc-panel-login-log -->
 
             <!-- ═══════════════ TAB: Other Settings ════════════ -->
             <div class="aluc-tab-panel" id="aluc-panel-other">
@@ -1009,6 +1116,85 @@ class ALUC_Login_Handler {
         $value = isset( $_POST['option_value'] ) ? absint( $_POST['option_value'] ) : 0;
         update_option( $key, $value );
         wp_send_json_success( [ 'message' => 'Saved' ] );
+        wp_die();
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+     * LOGIN ATTEMPT LOG — Free Feature
+     * ───────────────────────────────────────────────────────────── */
+
+    /**
+     * Get the visitor's real IP address.
+     */
+    private function aluc_get_ip() {
+        $keys = [ 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'REMOTE_ADDR' ];
+        foreach ( $keys as $key ) {
+            if ( ! empty( $_SERVER[ $key ] ) ) {
+                $ip = sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) );
+                // X-Forwarded-For can be a comma-separated list — take the first.
+                $ip = trim( explode( ',', $ip )[0] );
+                if ( filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+                    return $ip;
+                }
+            }
+        }
+        return '0.0.0.0';
+    }
+
+    /**
+     * Record a login attempt into the log (max 10 entries).
+     *
+     * @param string $username The username that was attempted.
+     * @param string $status   'success' or 'failed'.
+     */
+    private function aluc_record_attempt( $username, $status ) {
+        $log = get_option( 'aluc_login_log', [] );
+        if ( ! is_array( $log ) ) {
+            $log = [];
+        }
+
+        array_unshift( $log, [
+            'user'   => sanitize_user( $username ),
+            'ip'     => $this->aluc_get_ip(),
+            'time'   => time(),
+            'status' => $status,
+        ] );
+
+        // Keep only the last 10 entries.
+        $log = array_slice( $log, 0, 10 );
+
+        update_option( 'aluc_login_log', $log, false );
+    }
+
+    /**
+     * Hook: wp_login — fires on successful login.
+     */
+    public function aluc_log_login_success( $user_login, $user ) {
+        $this->aluc_record_attempt( $user_login, 'success' );
+    }
+
+    /**
+     * Hook: wp_login_failed — fires on failed login.
+     */
+    public function aluc_log_login_failed( $username, $error ) {
+        $this->aluc_record_attempt( $username, 'failed' );
+    }
+
+    /**
+     * AJAX: Clear the login log.
+     */
+    public function aluc_clear_login_log_ajax() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( [ 'message' => 'Unauthorized' ] );
+            wp_die();
+        }
+        if ( ! isset( $_POST['_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_nonce'] ) ), 'aluc-ajax-nonce' ) ) {
+            wp_send_json_error( [ 'message' => 'Invalid nonce' ] );
+            wp_die();
+        }
+
+        delete_option( 'aluc_login_log' );
+        wp_send_json_success( [ 'message' => 'Log cleared.' ] );
         wp_die();
     }
 
