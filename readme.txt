@@ -24,6 +24,8 @@ Upgrade to the **Pro Version** to unlock elite-level protection mechanisms:
 * **Searchable Country Blocker**: Restrict login access to specific countries using a live, search-filtered database of 200+ global regions.
 * **Login Attempt Limiter**: Set max retries, retry windows, lockout durations, and display warning alerts to prevent dictionary and brute-force attacks.
 * **Two-Factor Authentication (2FA)**: Add an ironclad second layer of verification via Authenticator Apps (Google Authenticator, Authy, Microsoft Authenticator) or Email OTP.
+* **Login Alerts**: Receive instant email notifications whenever someone successfully logs in or fails to log in — with IP, username, and timestamp included.
+* **Full Login Audit Log**: Unlimited login history (up to 500 entries) with user-agent details, replacing the free 10-entry limit.
 
 <strong>How to use the plugin</strong>
 
@@ -59,6 +61,9 @@ No, the plugin is fully compatible with native WordPress login flows and integra
 = 1.2.2 =
 
 * Added: Compatibility with WordPress 7.1
+* Added: Login Alerts — instant admin email notification on every successful or failed login attempt (IP, username, and timestamp included).
+* Added: Full Login Audit Log — unlimited login history (up to 500 entries with user-agent).
+* Added: Create a time-limited login link (1hr/24hr/7day) without needing a password
 
 = 1.2.1 =
 
