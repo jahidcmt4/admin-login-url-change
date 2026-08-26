@@ -55,6 +55,7 @@ No, the plugin is fully compatible with native WordPress login flows and integra
 
 1. Settings
 2. Other Settings
+3. Login Logs
 
 == Changelog ==
 
