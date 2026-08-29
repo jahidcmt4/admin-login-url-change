@@ -1,9 +1,9 @@
 === Admin login URL Change ===
 Contributors: jahidcse
-Tags: change wp-login, login, remove wp-login, wordpress login, custom login, login customizer, custom login url, images protection, content, right click disabled, F12 disabled, Copy content, disabled, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + Shift + C, Ctrl + U, wp developers, SEO, css, html
+Tags: change wp-login, login, remove wp-login, wordpress login, custom login
 Requires at least: 4.7
-Tested up to: 7.0
-Stable tag: 1.2.0
+Tested up to: 7.1
+Stable tag: 1.2.2
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,6 +24,8 @@ Upgrade to the **Pro Version** to unlock elite-level protection mechanisms:
 * **Searchable Country Blocker**: Restrict login access to specific countries using a live, search-filtered database of 200+ global regions.
 * **Login Attempt Limiter**: Set max retries, retry windows, lockout durations, and display warning alerts to prevent dictionary and brute-force attacks.
 * **Two-Factor Authentication (2FA)**: Add an ironclad second layer of verification via Authenticator Apps (Google Authenticator, Authy, Microsoft Authenticator) or Email OTP.
+* **Login Alerts**: Receive instant email notifications whenever someone successfully logs in or fails to log in — with IP, username, and timestamp included.
+* **Full Login Audit Log**: Unlimited login history (up to 500 entries) with user-agent details, replacing the free 10-entry limit.
 
 <strong>How to use the plugin</strong>
 
@@ -53,8 +55,21 @@ No, the plugin is fully compatible with native WordPress login flows and integra
 
 1. Settings
 2. Other Settings
+3. Login Logs
 
 == Changelog ==
+
+= 1.2.2 =
+
+* Added: Compatibility with WordPress 7.1
+* Added: Login Alerts — instant admin email notification on every successful or failed login attempt (IP, username, and timestamp included).
+* Added: Full Login Audit Log — unlimited login history (up to 500 entries with user-agent).
+* Added: Create a time-limited login link (1hr/24hr/7day) without needing a password
+
+= 1.2.1 =
+
+* Added: Compatibility with WooCommerce 11.0.1
+* Added: Compatibility with Elementor 4.2.2
 
 = 1.2.0 =
 

@@ -133,5 +133,50 @@
             });
         }
 
+        /* ── Clear Login Log ─────────────────────────────────── */
+        $('#aluc-clear-log-btn').on('click', function () {
+            var $btn = $(this);
+
+            if ( ! window.confirm('Are you sure you want to clear all login attempt records?') ) {
+                return;
+            }
+
+            $btn.addClass('loading').prop('disabled', true);
+            $btn.find('.aluc-btn-text').text('Clearing\u2026');
+
+            $.ajax({
+                url:  aluc_core.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'aluc_clear_login_log',
+                    _nonce: aluc_core.nonce
+                },
+                success: function (res) {
+                    if (res.success) {
+                        // Replace table (or empty state) with empty state message
+                        var emptyHtml =
+                            '<div class="aluc-log-empty">' +
+                                '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>' +
+                                '<p>No login attempts recorded yet.</p>' +
+                                '<span>Attempts will appear here once someone tries to log in.</span>' +
+                            '</div>';
+                        // Swap out the table or empty state inside the card-body
+                        var $body = $btn.closest('.aluc-card').find('.aluc-card-body');
+                        $body.html(emptyHtml);
+                        $btn.prop('disabled', true).find('.aluc-btn-text').text('Cleared');
+                    } else {
+                        $btn.removeClass('loading').prop('disabled', false);
+                        $btn.find('.aluc-btn-text').text('Clear Log');
+                        alert('Failed to clear log. Please try again.');
+                    }
+                },
+                error: function () {
+                    $btn.removeClass('loading').prop('disabled', false);
+                    $btn.find('.aluc-btn-text').text('Clear Log');
+                    alert('Something went wrong. Please try again.');
+                }
+            });
+        });
+
     });
 })(jQuery);

@@ -113,6 +113,7 @@
     margin: 20px 0 0;
     border-bottom: 2px solid #e8eaed;
     padding-bottom: 0;
+    flex-wrap: wrap;
 }
 
 .aluc-tab-btn {
@@ -1105,11 +1106,6 @@ textarea.aluc-input:focus {
 
 select.aluc-input {
     cursor: not-allowed;
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2380868b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
     padding-right: 36px;
 }
 
@@ -1670,5 +1666,283 @@ body.toplevel_page_admin-login-url-change .is-dismissible {
     .aluc-header-upgrade-btn {
         font-size: 11px;
         padding: 6px 12px;
+    }
+}
+
+/* ============================================================
+   LOGIN ATTEMPT LOG — Free Feature Styles
+   ============================================================ */
+
+/* ── Table wrapper ─────────────────────────────────────────── */
+.aluc-log-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 0 0 12px 12px;
+}
+
+/* ── Log Table ─────────────────────────────────────────────── */
+.aluc-log-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+.aluc-log-table thead tr {
+    background: #f0f4ff;
+    border-bottom: 2px solid #e0e7ff;
+}
+
+.aluc-log-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #3c4257;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+.aluc-log-table thead th:first-child {
+    width: 40px;
+    text-align: center;
+}
+
+.aluc-log-table tbody tr {
+    border-bottom: 1px solid #f0f0f5;
+    transition: background 0.15s ease;
+}
+
+.aluc-log-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.aluc-log-table tbody tr:hover {
+    background: #fafbff;
+}
+
+/* Row accent — left border by status */
+.aluc-log-row-success {
+    border-left: 3px solid #22c55e;
+}
+
+.aluc-log-row-failed {
+    border-left: 3px solid #ef4444;
+}
+
+.aluc-log-table td {
+    padding: 11px 16px;
+    color: #444;
+    vertical-align: middle;
+}
+
+/* ── Row number column ─────────────────────────────────────── */
+.aluc-log-num {
+    text-align: center;
+    font-weight: 700;
+    color: #9aa0b4;
+    font-size: 12px;
+}
+
+/* ── Username & IP columns (with icon) ─────────────────────── */
+.aluc-log-user,
+.aluc-log-ip,
+.aluc-log-time {
+    display: table-cell;
+}
+
+.aluc-log-user svg,
+.aluc-log-ip svg,
+.aluc-log-time svg {
+    width: 13px;
+    height: 13px;
+    fill: #9aa0b4;
+    vertical-align: middle;
+    margin-right: 5px;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.aluc-log-user {
+    font-weight: 500;
+    color: #2d3a4a;
+}
+
+.aluc-log-ip {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12.5px;
+    color: #5a6278;
+}
+
+.aluc-log-time {
+    color: #6b7280;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+/* ── Status badge ──────────────────────────────────────────── */
+.aluc-log-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.aluc-log-badge svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+.aluc-log-badge-success {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.aluc-log-badge-success svg {
+    fill: #15803d;
+}
+
+.aluc-log-badge-failed {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.aluc-log-badge-failed svg {
+    fill: #b91c1c;
+}
+
+/* ── Empty state ───────────────────────────────────────────── */
+.aluc-log-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    color: #9aa0b4;
+}
+
+.aluc-log-empty svg {
+    width: 40px;
+    height: 40px;
+    fill: #c8cdd8;
+    margin-bottom: 14px;
+}
+
+.aluc-log-empty p {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5a6278;
+}
+
+.aluc-log-empty span {
+    font-size: 13px;
+    color: #9aa0b4;
+}
+
+/* ── Clear Log button variant ──────────────────────────────── */
+.aluc-log-clear-btn {
+    background: #fff0f0;
+    color: #c0392b;
+    border: 1px solid #fecaca;
+}
+
+.aluc-log-clear-btn:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+.aluc-log-clear-btn svg {
+    fill: #c0392b;
+}
+
+.aluc-log-clear-btn.loading svg {
+    fill: #999;
+}
+
+/* ── Pro upsell hint banner ────────────────────────────────── */
+.aluc-log-pro-hint {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef9ee 100%);
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.aluc-log-pro-hint>svg {
+    width: 28px;
+    height: 28px;
+    fill: #f59e0b;
+    flex-shrink: 0;
+}
+
+.aluc-log-pro-hint>div {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.aluc-log-pro-hint strong {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #92400e;
+    display: block;
+}
+
+.aluc-log-pro-hint span {
+    font-size: 12.5px;
+    color: #a16207;
+    line-height: 1.5;
+}
+
+.aluc-log-pro-hint .aluc-btn-pro {
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+}
+
+.aluc-log-pro-hint .aluc-btn-pro:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.45);
+    transform: translateY(-1px);
+}
+
+.aluc-log-pro-hint .aluc-btn-pro svg {
+    fill: #fff;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+
+    .aluc-log-table thead th:nth-child(3),
+    .aluc-log-table td:nth-child(3) {
+        display: none;
+        /* hide IP on very small screens */
+    }
+
+    .aluc-log-pro-hint {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .aluc-log-pro-hint .aluc-btn-pro {
+        width: 100%;
+        justify-content: center;
     }
 }
