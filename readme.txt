@@ -3,7 +3,7 @@ Contributors: jahidcse
 Tags: change wp-login, login, remove wp-login, wordpress login, custom login
 Requires at least: 4.7
 Tested up to: 7.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,9 @@ No, the plugin is fully compatible with native WordPress login flows and integra
 3. Login Logs
 
 == Changelog ==
+
+= 1.2.3 =
+* Updated: Package Update
 
 = 1.2.2 =
 
