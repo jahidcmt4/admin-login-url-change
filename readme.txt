@@ -61,6 +61,7 @@ No, the plugin is fully compatible with native WordPress login flows and integra
 
 = 1.2.3 =
 * Updated: Package Update
+* Added: Compatibility with WooCommerce 11.2.1
 
 = 1.2.2 =
 
